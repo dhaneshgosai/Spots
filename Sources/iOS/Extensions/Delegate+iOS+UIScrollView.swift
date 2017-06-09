@@ -43,7 +43,11 @@ extension Delegate: UIScrollViewDelegate {
       }
 
       if let footerView = component.footerView {
-        footerView.frame.origin.y = scrollView.contentSize.height - footerView.frame.size.height
+        if scrollView.frame.size.height > scrollView.contentSize.height {
+          footerView.frame.origin.y = scrollView.frame.height - footerView.frame.size.height
+        } else {
+          footerView.frame.origin.y = scrollView.contentSize.height - footerView.frame.size.height
+        }
         footerView.frame.origin.x = scrollView.contentOffset.x
       }
 
